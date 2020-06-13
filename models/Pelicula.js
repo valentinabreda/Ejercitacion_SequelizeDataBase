@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         }
     };
     const config = {
-        tableName: 'movies',
+        tableName: 'movies', //nombre de la tabla
         timestamps: false
     };
 
