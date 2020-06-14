@@ -1,0 +1,15 @@
+<html>
+    <body>
+        <h1>Listado ultimas 5 peliculas</h1>
+        <ul>
+            <% for( let i = 0; i < pelicula.length; i++ ) { %>
+                <li>
+                    <a href="/movies/detail/<%= pelicula[i].id %>"> <%= pelicula[i].title %> </a>
+                    <br>
+                    <b> Fecha de Estreno: </b> <%= pelicula[i].release_date %>
+                    <br><br>
+                </li>
+            <% } %>
+        </ul>
+    </body>
+</html>
