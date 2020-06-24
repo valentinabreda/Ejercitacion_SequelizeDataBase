@@ -10,7 +10,7 @@ router.get('/edit/:id', moviesController.buscarParaEditar);
 router.post('/edit/:id', moviesController.editarPelicula);
 
 router.get('/delete/:id', moviesController.comenzarEliminacion);
-router.delete('/delete/:id', moviesController.eliminarPelicula);
+router.post('/delete/:id', moviesController.eliminarLaPelicula);
 
 router.get('/new', moviesController.ultimasCinco);
 

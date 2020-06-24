@@ -62,7 +62,7 @@ let moviesController = {
         })
     },
 
-    eliminarPelicula: (req, res) => {
+    eliminarLaPelicula: (req, res) => {
         const idPelicula = req.params.id;
         db.Peliculas.destroy({
             where: {
