@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<body class="container-fluid">
+    <form method="POST" action="/movies/delete/<%=peliculas.id%>">
+        <label for="title"> <%= peliculas.title %> </label>
+
+        <input type="submit" value="Eliminar">
+    </form>
+    <a href="/movies/detail/<%= peliculas.id %>">Volver</a>
+</body>
+</html>

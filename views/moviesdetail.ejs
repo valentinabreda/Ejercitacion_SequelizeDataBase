@@ -1,5 +1,24 @@
-<html>
-    <body>
-        <h1><%= peliculas.title %> </h1>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> <%= peliculas.title%>  </title>
+</head>
+<body>
+    <h1><%= peliculas.title %> </h1>
+    <ul>
+        <li>Premios: <%= peliculas.awards %> </li>
+        <li>Duracion: <%= peliculas.length %> </li>
+        <li>Fecha de Estreno: <% peliculas.release_date %> </li>
+    </ul>
+
+    <a href="/movies/edit/<%= peliculas.id %>">EDITAR</a> <br>
+    <a href="/movies/delete/<%= peliculas.id %>">ELIMINAR</a><br>
+    <a href="/movies">Volver</a>
+
+</body>
 </html>
+
+
+

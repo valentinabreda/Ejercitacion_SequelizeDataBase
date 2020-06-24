@@ -19,6 +19,63 @@ let moviesController = {
             return res.send('Ocurrió un error');
         });
     },
+    
+    buscarParaEditar: (req, res) => {
+        db.Peliculas.findByPk(req.params.id)
+        .then((peliculas) => {
+            return res.render('peliculaEditar', {
+                title: 'detail',
+                peliculas:peliculas
+            });
+        })
+    },
+
+    editarPelicula: (req, res) => {
+        const idPelicula = req.params.id;
+        db.Peliculas.update({
+            title: req.body.title,
+            awards: req.body.awards,
+            length: req.body.length,
+            release_date: req.body.release_date,
+            revenue: req.body.revenue
+        }, {
+            where: {
+                id: idPelicula
+            }
+        }).then(() => {
+            return res.redirect(`/movies/detail/${idPelicula}`);
+        }).catch((error) => {
+            return res.send('Ocurrió un error');
+        });
+    },
+
+    comenzarEliminacion: (req, res) => {
+        const idPelicula = req.params.id;
+        db.Peliculas.findByPk(idPelicula)
+        .then((peliculas) => {
+            return res.render('eliminarPelicula', {
+                peliculas:peliculas
+            })
+        })
+        .catch((error) => {
+            return res.send('Ocurrió un error')
+        })
+    },
+
+    eliminarPelicula: (req, res) => {
+        const idPelicula = req.params.id;
+        db.Peliculas.destroy({
+            where: {
+                id: idPelicula
+            }
+        })
+        .then(() => {
+            return res.redirect('/movies');
+        })
+        .catch((error) =>{
+            return res.send("Ocurrió un error")
+        })
+    },
 
     ultimasCinco: (req, res) => {
         db.Peliculas.findAll({
@@ -39,9 +96,11 @@ let moviesController = {
             where: {
                 awards: {[db.Sequelize.Op.gte]: 8}
             }
-        }).then( (peliculas) => {
+        })
+        .then( (peliculas) => {
             return res.render('recomendadas', {peliculas: peliculas});
-        }).catch( (error) => {
+        })
+        .catch( (error) => {
             return res.send('Ocurrió un error');
         });
     },
@@ -58,7 +117,8 @@ let moviesController = {
             where:{
                 title: {[db.Sequelize.Op.like]: `%${busqueda}%`}
             }
-        }).then( (peliculas) => {
+        })
+        .then( (peliculas) => {
             if(peliculas.length == 0) {
                 return res.send('No se encontraron resultados para su busqueda');
             };
@@ -66,9 +126,31 @@ let moviesController = {
                 title: 'Peliculas Encontradas',
                 peliculas: peliculas
             });
-        }).catch( (error) => {
+        })
+        .catch( (error) => {
             return res.send('Ocurrió un error');
         });
+    },
+    formularioCrearPelicula: (req, res) => {
+        return res.render('crearPelicula', {
+            title: 'Creacion de pelicula'
+        });
+    },
+
+    crearPelicula: (req, res) => {
+        db.Peliculas.create({
+            title: req.body.title,
+            awards: req.body.awards,
+            release_date: req.body.release_date,
+            length: req.body.length,
+            revenue: req.body.revenue,
+        })
+        .then(()=>{
+            return res.redirect('/movies')
+        })
+        .catch(()=> {
+            res.send('Ocurrió un error')
+        })
     }
 };
     

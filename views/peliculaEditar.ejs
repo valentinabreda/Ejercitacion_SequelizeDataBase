@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<body class="container-fluid">
+    <form method="POST" action="?_method=PUT">
+        <label for="title">Titulo </label>
+        <input type="text" name="title" id="" value="<%= peliculas.title %>"> <br>
+
+        <label for="awards">Premios </label>
+        <input type="number" name="awards" id="" value="<%= peliculas.awards %>"> <br>
+
+        <label for="length">Duración </label>
+        <input type="text" name="length" id="" value="<%= peliculas.length %>"> <br>
+
+        <label for="release_date">Año de Lanzamiento </label>
+        <input type="date" name="release_date" id="" value="<%= peliculas.release_date %>">
+
+        <input type="submit" value="Actualizar">
+    </form>
+    <a href="/movies/detail/<%= peliculas.id %>">Volver</a>
+</body>
+</html>

@@ -20,6 +20,9 @@ module.exports = (sequelize, DataTypes) => {
         },
         genre_id: {
             type: DataTypes.INTEGER
+        },
+        revenue: {
+            type: DataTypes.INTEGER
         }
     };
     const config = {
